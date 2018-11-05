@@ -1,0 +1,78 @@
+/* start global */
+body{
+    padding-top: 50px;
+}
+
+section{
+    padding: 40px 0;
+}
+
+.col-md-4{
+    margin-bottom: 15px;
+}
+
+.em-txt{
+    color: #1caa98 !important;
+}
+/* end global */
+
+/* start jumbotron */
+.jumbotron{
+    height: 85vh;
+    margin: 0;
+    overflow: hidden; /* Q here*/
+}
+
+.jumbotron h1{
+    margin-top: 60px;
+}
+
+.jumbotron p {
+    margin-bottom: 40px;
+}
+
+/* end jumbotron */
+
+/* start footer */
+footer{
+    background: #333;
+    color: #FFF;
+    padding: 15px 0 5px 0;
+}
+
+footer ul{
+    width: 60%;
+    margin: auto;
+    font-size: 1.2rem;
+}
+
+footer ul li{
+    display: inline;    
+    padding: 0 10px;
+    list-style: none;
+}
+
+footer ul li a{
+    color: #FFF;
+}
+
+footer p{
+    font-size: 1.1rem;
+    float: left;
+}
+/* end footer */
+
+/*start about*/
+
+section#title-bar{
+    background: #1caa98;
+    color: #FFF;
+    margin: 0;
+    padding: 20px 10px 10px ;
+}
+
+section#title-bar h1{
+    margin-bottom: 20px;
+}
+
+/* end about */

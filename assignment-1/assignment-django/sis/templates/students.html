@@ -1,0 +1,116 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SIS: Students</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <a class="navbar-brand em-txt" href="#">SIS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'student' %}">Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'course' %}">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'grade' %}">Grades</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="title-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="display-4">Students</h2>
+                    <form method="GET" action="{% url 'studentSearch' %}" class="form-inline my-2 my-lg-0">
+                        <input name="q" value="{{ request.GET.q }}" class="form-control mr-sm-2" type="text"
+                            placeholder="Search">
+                        <button class="btn btn-default my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <form method="POST" action="{% url 'studentAdd' %}">
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit">Add</button>
+        </form>
+    </section>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students_list %}
+            <tr>
+                <th scope="row">{{ student.id }}</th>
+                <td>{{ student.name }}</td>
+                <td><a href="{% url 'studentEdit' student.id %}">
+                        <button class="btn btn-warning" type="submit">Edit</button></a>
+                    <a href="{% url 'studentDelete' student.id %}">
+                        <button class="btn btn-danger" type="submit">Delete</button></a>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <p>Copyright &copy; 2018, All Rights Reserved</p>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube fa-lg"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram fa-lg"></i></a></li>
+                        <li><a href="#home"><i class="fas fa-arrow-up fa-lg"></i></a></i></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
